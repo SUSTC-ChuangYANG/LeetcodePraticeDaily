@@ -32,5 +32,6 @@ class Solution:
         nums[pos+1:]= sorted(nums[pos+1:])
 
 test = [1,3,2]
-nextPermutation(test)
+S = Solution()
+S.nextPermutation(nums=test)
 print(test)
