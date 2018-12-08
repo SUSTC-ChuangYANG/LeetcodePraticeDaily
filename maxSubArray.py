@@ -45,8 +45,8 @@ def maxSubArray(nums, algor="dp"):
             return nums[0]
         if not nums:
             return 0
-        left = self.maxSubArray(nums[0:int(length / 2)], algor='divide_conquer')
-        right = self.maxSubArray(nums[int(length / 2):], algor='divide_conquer')
+        left = maxSubArray(nums[0:int(length / 2)], algor='divide_conquer')
+        right = maxSubArray(nums[int(length / 2):], algor='divide_conquer')
         max_right = -float('inf')
         sum = 0
         for i in range(int(length / 2), length):
@@ -61,8 +61,22 @@ def maxSubArray(nums, algor="dp"):
             max_left = max(sum, max_left)
             i -= 1
         return max(left, right, max_left + max_right)
-        # O(n), dynamic programming
-        # test
+    # O(n), dynamic programming
+    if algor == "dp":
+        length = len(nums)
+        if length == 1:
+            return nums[0]
+        if not nums:
+            return 0
+        dp = []
+        dp.append(nums[0])
+        for i in range(1, length):
+            new = max(nums[i], dp[i-1]+nums[i])
+            dp.append(new)
+        return max(dp)
+
+
+
 
 
 
