@@ -70,6 +70,3 @@ def maxSubArray(nums, algor="dp"):
 
 
 x = maxSubArray([-2,1,-3,4,-1,2,1,-5,4],algor="fast")
-print(x)
-ll = [1,2]
-print(ll[2:2])
