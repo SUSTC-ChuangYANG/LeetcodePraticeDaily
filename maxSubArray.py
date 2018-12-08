@@ -61,8 +61,7 @@ def maxSubArray(nums, algor="dp"):
             max_left = max(sum, max_left)
             i -= 1
         return max(left, right, max_left + max_right)
-
-    # O(n)
+        # O(n), dynamic programming
 
 
 
