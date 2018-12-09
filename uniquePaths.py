@@ -16,7 +16,7 @@ def uniquePaths(m, n):
     Solution: use dynamic programming, build a recursion formula
               uniquePaths(m, n) = uniquePaths(m-1, n) + uniquePaths(m, n-1)
               because to locate(m, n) must go through (m,n-1) or (m-1, n)
-              notice not use recursive function, it do a lot idle work.
+              notice not use recursive function, it does a lot unnecessary amount of work.
     """
     matrix = [[1] * n for i in range(m)]
     for i in range(1, m):
