@@ -76,43 +76,6 @@ class Solution(object):
                 c_node = c_node.next
             return pre_head.next
 
-
-
-        # c_head = RandomListNode(head.label)
-        # c_head.random = head.random
-        # c_node = c_head
-        # node = head.next
-        # # copy
-        # while node:
-        #     c_node.next = RandomListNode(node.label)
-        #     c_node = c_node.next
-        #     c_node.random = node.random
-        #     node = node.next
-        # node = head
-        # c_node = c_head
-        # hash_bucket = {}
-        # while node:
-        #     hash_bucket[id(node)] = c_node
-        #     # print("--------------")
-        #     # print(id(node))
-        #     # print(id(node.random))
-        #     # print(id(node.next))
-        #     # print("--------------")
-        #     # print(id(c_node))
-        #     # print(id(c_node.random))
-        #     # print(id(c_node.next))
-        #     # print("--------------")
-        #     node = node.next
-        #     c_node = c_node.next
-        # c_node = c_head
-        # while c_node:
-        #     if c_node.random:
-        #         c_node.random = hash_bucket[id(c_node.random)]
-        #     c_node = c_node.next
-
-
-
-
 # test
 def print_link_list(head):
     node = head
@@ -126,6 +89,7 @@ def print_link_list(head):
         print("###########")
         node = node.next
 
+# build your test linked list here
 n1 = RandomListNode(1)
 n2 = RandomListNode(2)
 n3 = RandomListNode(3)
@@ -135,6 +99,7 @@ n2.next = n3
 n2.random = n2
 n3.next = None
 n3.random = n1
+# running
 s = Solution()
-s.copyRandomList(n1)
-# print_link_list(n1)
+copy = s.copyRandomList(n1)
+print_link_list(copy)
