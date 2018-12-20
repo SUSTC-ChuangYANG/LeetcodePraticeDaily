@@ -20,7 +20,6 @@ class Solution:
     def recursive_partition(self, s, temp, res):
         if not s:
             res.append(temp.copy())
-            print(temp)
             return
 
         for i in range(len(s)):
