@@ -1,4 +1,54 @@
+"""
+Problem Description:
+    Given an unsorted array nums, reorder it such that nums[0] < nums[1] > nums[2] < nums[3]....
+Idea:
+    For any unsorted array nums, we can sort it and get the median.
+    Then we can split it into two parts in the middle. As you can image,
+    any one of the left part is smaller than the one in right.
+    So we can bind one from the left and one from the right,
+    obviously, the left one is always no larger than right.(<=)
+    But now our requirement is "<" instead of "<=".
+    So How?
 
+    |   |
+    |   |   |
+    |   |   |   |
+    |   |   |   |   |
+    -------------------------
+      |   |
+      |   |   |   |
+      |   |   |   |   |
+      |   |   |   |   |
+      |   |   |   |   |
+      |   |   |   |   |
+    As you can see, split the sorted array into two part,
+    and combine them from high to low, make the different between two neighbors as big as possible.
+    Is A SOLUTION!
+    But!
+    1. Sort need O(n log n)
+    2. Make adjustment and exchange within each parts(except adjust the median's position),
+       we still satisfy the "wiggle" attributes.
+
+    This is excellent!
+    We just need to split an unsorted array into three parts,
+        part "left" is smaller than median,
+        part "middle" is equal to the median,
+        part "right" is larger than median.
+    Cut the semi-sorted array into two parts.
+    |   |
+    |   |       |
+    |   |       |   |
+    |   |   |   |   |
+    -------------------------
+      |       |
+      |   |   |   |
+      |   |   |   |   |
+      |   |   |   |   |
+      |   |   |   |   |
+      |   |   |   |   |
+
+    Semi-sorted is an O(n) !!!, so we get it.
+"""
 class Solution:
     def wiggleSort(self, nums):
         """
@@ -6,29 +56,20 @@ class Solution:
         :rtype: void Do not return anything, modify nums in-place instead.
         """
         length = len(nums)
-        self.findKthLargest(nums, int(length/2))
-        if length%2:
-            max_i = int((length+1)/2)
-        else:
-            max_i = int(length / 2)
-        i = 0
+        if length <=1:
+            return
+        self.findKthLargest(nums, int((length)/2)+1)
+        print(nums)
+        max_i = (length-1)//2 + 1
         temp_i = nums[0:max_i][::-1]
-        temp_j = nums[max_i:]
-        x = 0
+        temp_j = nums[max_i:][::-1]
+        i = 0
         while i < length:
-            nums[i] = temp_i[x]
-            i += 2
-            x += 1
-        if length%2:
-            j = length - 2
-
-        else:
-            j = length - 1
-        x = 0
-        while j >= 0:
-            nums[j] = temp_j[x]
-            j -= 2
-            x += 1
+            if i%2 == 0:
+                nums[i] = temp_i[i//2]
+            else:
+                nums[i] = temp_j[i//2]
+            i += 1
         return nums
 
 
@@ -96,4 +137,4 @@ def test_model(nums=[]):
 
 if __name__ == '__main__':
     # test_model([1,53,6,765,3,5456,564,64],2)
-    test_model([4,5,5,6])
+    test_model([4,5,10,8,7])
