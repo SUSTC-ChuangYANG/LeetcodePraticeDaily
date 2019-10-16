@@ -15,11 +15,7 @@ class Solution(object):
                 else:
                     lcs[i][j] = max(lcs[i-1][j], lcs[i][j-1])
 
-        print(lcs[l1-1][l2-1])
-
-
-
-
+        return lcs[l1-1][l2-1]
 
 
 s = Solution()
